@@ -12,17 +12,6 @@ const envVarsSchema = Joi.object()
     JWT_SECRET: Joi.string().required().description('JWT secret key'),
     JWT_ACCESS_EXPIRATION_DAYS: Joi.number().default(7).description('days after which access tokens expire'),
     JWT_REFRESH_EXPIRATION_DAYS: Joi.number().default(30).description('days after which refresh tokens expire'),
-    SMTP_HOST: Joi.string().description('server that will send the emails'),
-    SMTP_PORT: Joi.number().description('port to connect to the email server'),
-    SMTP_USERNAME: Joi.string().description('username for email server'),
-    SMTP_PASSWORD: Joi.string().description('password for email server'),
-    EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
-    HUBSPOT_ENABLED: Joi.string().default(false),
-    HUBSPOT_API_KEY: Joi.string().description('Hubspot API Key'),
-    MAILGUN_ENABLED: Joi.boolean().default(false),
-    MAILGUN_API_KEY: Joi.string().description('MailGun API Key'),
-    MAILGUN_DOMAIN: Joi.string().description('MailGun Domain'),
-    STRIPE_SECRET_KEY: Joi.string().description('Stripe Secret Key'),
   })
   .unknown()
 
@@ -37,7 +26,7 @@ export default {
   port: envVars.PORT,
   host: envVars.HOST,
   mongoose: {
-    url: envVars.NODE_ENV !== 'test' ? envVars.MONGODB_URL :  envVars.MONGODB_URL_TEST,
+    url: envVars.MONGODB_URL,
     options: {
       useCreateIndex: true,
       useNewUrlParser: true,
